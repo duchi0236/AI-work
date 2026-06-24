@@ -1,0 +1,1 @@
+Original generated diagrams are stored in this directory.
