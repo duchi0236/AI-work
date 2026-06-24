@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <defs>
+    <style>
+      .title{font:700 54px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;fill:#15233d}
+      .h2{font:700 34px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;fill:#17365d}
+      .body{font:400 26px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;fill:#243247}
+      .small{font:400 22px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;fill:#35445c}
+      .mono{font:500 23px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#ecf3ff}
+      .chip{font:700 24px -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC','PingFang SC',sans-serif;fill:white}
+    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#17365d" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1200" height="1600" fill="#f4f8ff"/>
+  <rect x="55" y="45" width="1090" height="140" rx="34" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="95" y="108" class="title">LeetCode 438：找到字符串中所有字母异位词</text>
+  <text x="96" y="155" class="small">核心方法：固定长度滑动窗口 + 26 位字符频次数组</text>
+
+  <rect x="55" y="220" width="1090" height="235" rx="30" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="90" y="270" class="h2">1. 题目要做什么？</text>
+  <text x="90" y="315" class="body">输入：s = “cbaebabacd”，p = “abc”</text>
+  <text x="90" y="360" class="body">找出 s 中长度等于 p.length，且字符频次与 p 相同的所有子串。</text>
+  <rect x="90" y="390" width="130" height="44" rx="22" fill="#2d6cdf"/><text x="119" y="421" class="chip">cba ✓</text>
+  <rect x="240" y="390" width="130" height="44" rx="22" fill="#dce8fb"/><text x="275" y="421" class="small">bae</text>
+  <rect x="390" y="390" width="130" height="44" rx="22" fill="#dce8fb"/><text x="425" y="421" class="small">aeb</text>
+  <rect x="540" y="390" width="130" height="44" rx="22" fill="#dce8fb"/><text x="575" y="421" class="small">eba</text>
+  <rect x="690" y="390" width="130" height="44" rx="22" fill="#dce8fb"/><text x="725" y="421" class="small">bab</text>
+  <rect x="840" y="390" width="130" height="44" rx="22" fill="#2d6cdf"/><text x="870" y="421" class="chip">bac ✓</text>
+  <text x="1000" y="421" class="body">答案：[0, 6]</text>
+
+  <rect x="55" y="490" width="1090" height="370" rx="30" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="90" y="542" class="h2">2. 窗口是怎么滑动的？</text>
+  <text x="90" y="590" class="body">窗口长度永远固定为 3。每次右移一格：</text>
+  <rect x="90" y="625" width="1010" height="82" rx="18" fill="#edf4ff"/>
+  <text x="115" y="675" class="body">加入右侧字符 → 移除左侧字符 → 比较 26 位频次数组</text>
+
+  <text x="95" y="755" class="small">索引：</text>
+  <text x="175" y="755" class="small">0</text><text x="255" y="755" class="small">1</text><text x="335" y="755" class="small">2</text><text x="415" y="755" class="small">3</text><text x="495" y="755" class="small">4</text><text x="575" y="755" class="small">5</text><text x="655" y="755" class="small">6</text><text x="735" y="755" class="small">7</text><text x="815" y="755" class="small">8</text><text x="895" y="755" class="small">9</text>
+  <text x="175" y="800" class="body">c</text><text x="255" y="800" class="body">b</text><text x="335" y="800" class="body">a</text><text x="415" y="800" class="body">e</text><text x="495" y="800" class="body">b</text><text x="575" y="800" class="body">a</text><text x="655" y="800" class="body">b</text><text x="735" y="800" class="body">a</text><text x="815" y="800" class="body">c</text><text x="895" y="800" class="body">d</text>
+  <rect x="145" y="765" width="245" height="58" rx="15" fill="none" stroke="#2d6cdf" stroke-width="6"/>
+  <path d="M390 835 C450 870, 530 870, 590 835" fill="none" stroke="#ff8a3d" stroke-width="5" marker-end="url(#arrow)"/>
+  <text x="430" y="845" class="small">右移一格</text>
+
+  <rect x="55" y="895" width="1090" height="420" rx="30" fill="#14243e" filter="url(#shadow)"/>
+  <text x="90" y="950" class="h2" fill="#ffffff">3. JavaScript 实现</text>
+  <text x="90" y="1000" class="mono">var findAnagrams = function (s, p) {</text>
+  <text x="120" y="1040" class="mono">const result = [];</text>
+  <text x="120" y="1080" class="mono">const need = new Array(26).fill(0);</text>
+  <text x="120" y="1120" class="mono">const window = new Array(26).fill(0);</text>
+  <text x="120" y="1160" class="mono">for (const ch of p) need[ch.charCodeAt(0) - 97]++;</text>
+  <text x="120" y="1200" class="mono">for (let right = 0; right &lt; s.length; right++) {</text>
+  <text x="150" y="1240" class="mono">window[s.charCodeAt(right) - 97]++;</text>
+  <text x="150" y="1280" class="mono">if (right &gt;= p.length)</text>
+  <text x="180" y="1320" class="mono">window[s.charCodeAt(right - p.length) - 97]--;</text>
+  <text x="150" y="1360" class="mono">if (right &gt;= p.length - 1 &amp;&amp; same(need, window))</text>
+  <text x="180" y="1400" class="mono">result.push(right - p.length + 1);</text>
+  <text x="120" y="1440" class="mono">}</text>
+  <text x="120" y="1480" class="mono">return result;</text>
+  <text x="90" y="1520" class="mono">};</text>
+
+  <rect x="780" y="950" width="320" height="300" rx="24" fill="#21395e"/>
+  <text x="815" y="1010" class="h2" fill="#ffffff">复杂度</text>
+  <text x="815" y="1065" class="body" fill="#ffffff">时间：O(26 × n)</text>
+  <text x="815" y="1110" class="body" fill="#ffffff">约等于 O(n)</text>
+  <text x="815" y="1165" class="body" fill="#ffffff">空间：O(26)</text>
+  <text x="815" y="1220" class="small" fill="#dbe8ff">关键：窗口长度固定</text>
+  <text x="815" y="1255" class="small" fill="#dbe8ff">每次只改两个字符</text>
+</svg>
