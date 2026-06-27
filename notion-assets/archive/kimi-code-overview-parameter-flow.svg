@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1020" viewBox="0 0 1600 1020">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1020" rx="28" fill="#fbfaf8"/>
+  <rect x="34" y="34" width="1532" height="952" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="95" text-anchor="start" font-size="34" font-weight="780" fill="#151515">Kimi Code 总体参数流</text>
+  <text x="80" y="133" text-anchor="start" font-size="18" font-weight="520" fill="#667085">从 CLI 输入到模型调用、工具执行、上下文回灌的完整链路</text>
+  
+  <g id="cli">
+    <rect x="80" y="190" width="310" height="110" rx="12" fill="#eef6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="235" y="230" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">CLI / TUI / ACP</text>
+<text x="235" y="261" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">输入: prompt, workDir, opts</text>
+  </g>
+
+  <g id="sdk">
+    <rect x="470" y="190" width="330" height="110" rx="12" fill="#eff6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="635" y="230" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">KimiHarness</text>
+<text x="635" y="261" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{homeDir, identity, telemetry}</text>
+  </g>
+
+  <g id="core">
+    <rect x="880" y="190" width="330" height="110" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="1045" y="230" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Agent Core</text>
+<text x="1045" y="261" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Session + Agent</text>
+  </g>
+
+  <g id="loop">
+    <rect x="360" y="420" width="300" height="105" rx="12" fill="#f8fafc" stroke="#8d949e" stroke-width="2"/>
+    <text x="510" y="457.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Loop</text>
+<text x="510" y="488.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">runTurn / turnStep</text>
+  </g>
+
+  <g id="ctx">
+    <rect x="720" y="420" width="330" height="105" rx="12" fill="#fff7ed" stroke="#8d949e" stroke-width="2"/>
+    <text x="885" y="457.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Context + Records</text>
+<text x="885" y="488.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">messages + origin + JSONL</text>
+  </g>
+
+  <g id="sub">
+    <rect x="1120" y="420" width="330" height="105" rx="12" fill="#f5f3ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="1285" y="457.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Subagents</text>
+<text x="1285" y="488.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">prompt + items -&gt; child agents</text>
+  </g>
+
+  <g id="kosong">
+    <rect x="190" y="650" width="330" height="105" rx="12" fill="#eef2ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="355" y="687.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">kosong</text>
+<text x="355" y="718.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Message[] + tools -&gt; provider</text>
+  </g>
+
+  <g id="tools">
+    <rect x="720" y="650" width="330" height="105" rx="12" fill="#fefce8" stroke="#8d949e" stroke-width="2"/>
+    <text x="885" y="687.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Tools</text>
+<text x="885" y="718.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">toolCalls[] -&gt; execute()</text>
+  </g>
+
+  <g id="perm">
+    <rect x="555" y="830" width="300" height="95" rx="12" fill="#fff1f2" stroke="#8d949e" stroke-width="2"/>
+    <text x="705" y="862.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Permission + Hooks</text>
+<text x="705" y="893.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">approvalRule + accesses</text>
+  </g>
+
+  <g id="kaos">
+    <rect x="925" y="830" width="300" height="95" rx="12" fill="#ecfdf5" stroke="#8d949e" stroke-width="2"/>
+    <text x="1075" y="862.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">kaos</text>
+<text x="1075" y="893.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{cwd,path,command,env}</text>
+  </g>
+
+  <g id="model">
+    <rect x="80" y="830" width="330" height="95" rx="12" fill="#f1f5f9" stroke="#8d949e" stroke-width="2"/>
+    <text x="245" y="862.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Model Providers</text>
+<text x="245" y="893.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Kimi / OpenAI-compatible</text>
+  </g>
+
+  <g>
+    <path d="M 390 245 L 470 245" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="260" y="220" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="430" y="245" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">createKimiHarness(...)</text>
+  </g>
+
+  <g>
+    <path d="M 800 245 L 880 245" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="670" y="220" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="840" y="245" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">createSession(...)</text>
+  </g>
+
+  <g>
+    <path d="M 1045 300 L 1045 365 L 510 365 L 510 420" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="590" y="340" width="360" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="770" y="365" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">runTurn(input)</text>
+  </g>
+
+  <g>
+    <path d="M 1045 300 L 885 420" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="795" y="335" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="965" y="360" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">append / build messages</text>
+  </g>
+
+  <g>
+    <path d="M 1210 300 L 1285 420" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="1077.5" y="335" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1247.5" y="360" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">spawn sub agent</text>
+  </g>
+
+  <g>
+    <path d="M 510 525 L 355 650" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="262.5" y="562.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="432.5" y="587.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">chat({messages,tools})</text>
+  </g>
+
+  <g>
+    <path d="M 660 475 L 720 700" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="520" y="562.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="690" y="587.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">response.toolCalls[]</text>
+  </g>
+
+  <g>
+    <path d="M 355 755 L 245 830" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="130" y="767.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="300" y="792.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">provider request</text>
+  </g>
+
+  <g>
+    <path d="M 885 755 L 705 830" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="625" y="767.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="795" y="792.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">approvalRule</text>
+  </g>
+
+  <g>
+    <path d="M 885 755 L 1075 830" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="810" y="767.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="980" y="792.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">execute params</text>
+  </g>
+
+  <g>
+    <path d="M 1075 830 L 1075 785 L 885 785 L 885 755" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="815" y="760" width="360" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="995" y="785" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">tool result</text>
+  </g>
+
+  <g>
+    <path d="M 885 650 L 885 590 L 885 525" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="855" y="565" width="360" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1035" y="590" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">tool.result -&gt; context</text>
+  </g>
+</svg>

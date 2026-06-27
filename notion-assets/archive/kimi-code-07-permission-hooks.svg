@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1000" rx="28" fill="#fbfaf8"/>
+  <rect x="34" y="34" width="1532" height="932" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="95" text-anchor="start" font-size="34" font-weight="780" fill="#151515">07 Permission + Hooks + Approval</text>
+  <text x="80" y="133" text-anchor="start" font-size="18" font-weight="520" fill="#667085">副作用执行前如何被策略、hook 和用户审批拦截</text>
+  
+  <g id="descriptor">
+    <rect x="90" y="200" width="390" height="105" rx="12" fill="#eef6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="285" y="237.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Execution descriptor</text>
+<text x="285" y="268.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{approvalRule, accesses, args, cwd}</text>
+  </g>
+
+  <g id="policy">
+    <rect x="570" y="200" width="350" height="105" rx="12" fill="#fff7ed" stroke="#8d949e" stroke-width="2"/>
+    <text x="745" y="237.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Permission policies</text>
+<text x="745" y="268.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">approve / ask / deny</text>
+  </g>
+
+  <g id="hooks">
+    <rect x="1010" y="200" width="350" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="1185" y="237.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Hooks</text>
+<text x="1185" y="268.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">allow / block / synthetic</text>
+  </g>
+
+  <g id="ask">
+    <rect x="300" y="455" width="350" height="105" rx="12" fill="#eef2ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="475" y="492.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">TUI approval panel</text>
+<text x="475" y="523.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">user approve / deny</text>
+  </g>
+
+  <g id="deny">
+    <rect x="790" y="455" width="350" height="105" rx="12" fill="#fff1f2" stroke="#8d949e" stroke-width="2"/>
+    <text x="965" y="492.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Denied / blocked</text>
+<text x="965" y="523.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">reason -&gt; tool.result</text>
+  </g>
+
+  <g id="execute">
+    <rect x="300" y="705" width="350" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="475" y="742.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">execute()</text>
+<text x="475" y="773.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">approved side effect</text>
+  </g>
+
+  <g id="context">
+    <rect x="790" y="705" width="350" height="105" rx="12" fill="#f8fafc" stroke="#8d949e" stroke-width="2"/>
+    <text x="965" y="742.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Model feedback</text>
+<text x="965" y="773.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">tool.result 回灌边界</text>
+  </g>
+
+  <g>
+    <path d="M 480 252 L 570 252" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="355" y="227" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="525" y="252" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">approvalRule</text>
+  </g>
+
+  <g>
+    <path d="M 920 252 L 1010 252" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="795" y="227" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="965" y="252" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">hook payload</text>
+  </g>
+
+  <g>
+    <path d="M 745 305 L 475 455" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="440" y="355" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="610" y="380" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">ask</text>
+  </g>
+
+  <g>
+    <path d="M 1185 305 L 965 455" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="905" y="355" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1075" y="380" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">block</text>
+  </g>
+
+  <g>
+    <path d="M 475 560 L 475 705" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="305" y="607.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="475" y="632.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">approve</text>
+  </g>
+
+  <g>
+    <path d="M 965 560 L 965 705" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="795" y="607.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="965" y="632.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">deny reason</text>
+  </g>
+
+  <g>
+    <path d="M 650 758 L 790 758" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="550" y="733" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="720" y="758" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">result</text>
+  </g>
+</svg>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1000" rx="28" fill="#fbfaf8"/>
+  <rect x="34" y="34" width="1532" height="932" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="95" text-anchor="start" font-size="34" font-weight="780" fill="#151515">02 Agent + Session</text>
+  <text x="80" y="133" text-anchor="start" font-size="18" font-weight="520" fill="#667085">会话生命周期与 Agent 执行边界</text>
+  
+  <g id="harness">
+    <rect x="90" y="210" width="340" height="105" rx="12" fill="#eff6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="260" y="247.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">KimiHarness.createSession</text>
+<text x="260" y="278.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">options: workDir, model, kaos</text>
+  </g>
+
+  <g id="rpc">
+    <rect x="510" y="210" width="310" height="105" rx="12" fill="#f3f4f6" stroke="#8d949e" stroke-width="2"/>
+    <text x="665" y="247.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">RPC</text>
+<text x="665" y="278.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">createSession(coreOptions)</text>
+  </g>
+
+  <g id="summary">
+    <rect x="900" y="210" width="340" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="1070" y="247.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">SessionSummary</text>
+<text x="1070" y="278.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{id, workDir, title, metadata}</text>
+  </g>
+
+  <g id="sdk">
+    <rect x="510" y="430" width="340" height="105" rx="12" fill="#f8fafc" stroke="#8d949e" stroke-width="2"/>
+    <text x="680" y="467.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">SDK Session</text>
+<text x="680" y="498.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{id, workDir, rpc}</text>
+  </g>
+
+  <g id="core">
+    <rect x="270" y="650" width="340" height="105" rx="12" fill="#fff7ed" stroke="#8d949e" stroke-width="2"/>
+    <text x="440" y="687.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">agent-core Session</text>
+<text x="440" y="718.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">main agent + sub agents</text>
+  </g>
+
+  <g id="agent">
+    <rect x="790" y="650" width="380" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="980" y="687.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Agent</text>
+<text x="980" y="718.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">context / goal / tools / records</text>
+  </g>
+
+  <g id="turn">
+    <rect x="535" y="840" width="380" height="95" rx="12" fill="#eef2ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="725" y="872.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Turn execution</text>
+<text x="725" y="903.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">runTurn({llm, tools, hooks})</text>
+  </g>
+
+  <g>
+    <path d="M 430 262 L 510 262" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="300" y="237" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="470" y="262" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">coreOptions</text>
+  </g>
+
+  <g>
+    <path d="M 820 262 L 900 262" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="690" y="237" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="860" y="262" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">summary</text>
+  </g>
+
+  <g>
+    <path d="M 1070 315 L 680 430" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="705" y="347.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="875" y="372.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">wrap SDK Session</text>
+  </g>
+
+  <g>
+    <path d="M 680 535 L 440 650" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="390" y="567.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="560" y="592.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">session.turn(prompt)</text>
+  </g>
+
+  <g>
+    <path d="M 610 702 L 790 702" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="530" y="677" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="700" y="702" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">route to Agent</text>
+  </g>
+
+  <g>
+    <path d="M 980 755 L 725 840" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="682.5" y="772.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="852.5" y="797.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">turn input</text>
+  </g>
+</svg>

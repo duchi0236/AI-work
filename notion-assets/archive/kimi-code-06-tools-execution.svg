@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1000" rx="28" fill="#fbfaf8"/>
+  <rect x="34" y="34" width="1532" height="932" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="95" text-anchor="start" font-size="34" font-weight="780" fill="#151515">06 Tools 执行链</text>
+  <text x="80" y="133" text-anchor="start" font-size="18" font-weight="520" fill="#667085">模型 toolCalls 如何变成文件、命令、Web、MCP 或插件动作</text>
+  
+  <g id="toolcalls">
+    <rect x="80" y="190" width="360" height="105" rx="12" fill="#eef6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="260" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">response.toolCalls[]</text>
+<text x="260" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{id, name, arguments}</text>
+  </g>
+
+  <g id="preflight">
+    <rect x="520" y="190" width="360" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="700" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">preflightToolCall</text>
+<text x="700" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">parse JSON + validate args</text>
+  </g>
+
+  <g id="prepare">
+    <rect x="960" y="190" width="380" height="105" rx="12" fill="#fff7ed" stroke="#8d949e" stroke-width="2"/>
+    <text x="1150" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">prepareToolCall</text>
+<text x="1150" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">resolveExecution(args)</text>
+  </g>
+
+  <g id="descriptor">
+    <rect x="520" y="430" width="420" height="105" rx="12" fill="#fefce8" stroke="#8d949e" stroke-width="2"/>
+    <text x="730" y="467.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Execution descriptor</text>
+<text x="730" y="498.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{accesses, approvalRule, display, execute}</text>
+  </g>
+
+  <g id="scheduler">
+    <rect x="130" y="670" width="360" height="105" rx="12" fill="#eef2ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="310" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">ToolScheduler</text>
+<text x="310" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">conflict(accesses) -&gt; queue/run</text>
+  </g>
+
+  <g id="execute">
+    <rect x="590" y="670" width="360" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="770" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">execute()</text>
+<text x="770" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">real side effect</text>
+  </g>
+
+  <g id="impl">
+    <rect x="1040" y="670" width="360" height="105" rx="12" fill="#f8fafc" stroke="#8d949e" stroke-width="2"/>
+    <text x="1220" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Tool implementations</text>
+<text x="1220" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">file / shell / web / MCP / plugin</text>
+  </g>
+
+  <g id="result">
+    <rect x="590" y="845" width="360" height="95" rx="12" fill="#fff1f2" stroke="#8d949e" stroke-width="2"/>
+    <text x="770" y="877.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">ExecutableToolResult</text>
+<text x="770" y="908.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">provider-order tool.result</text>
+  </g>
+
+  <g>
+    <path d="M 440 242 L 520 242" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="310" y="217" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="480" y="242" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">tool name + args</text>
+  </g>
+
+  <g>
+    <path d="M 880 242 L 960 242" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="750" y="217" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="920" y="242" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">validated args</text>
+  </g>
+
+  <g>
+    <path d="M 1150 295 L 730 430" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="770" y="337.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="940" y="362.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">description only</text>
+  </g>
+
+  <g>
+    <path d="M 730 535 L 310 670" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="350" y="577.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="520" y="602.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">accesses</text>
+  </g>
+
+  <g>
+    <path d="M 490 722 L 590 722" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="370" y="697" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="540" y="722" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">start when safe</text>
+  </g>
+
+  <g>
+    <path d="M 950 722 L 1040 722" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="825" y="697" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="995" y="722" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">dispatch</text>
+  </g>
+
+  <g>
+    <path d="M 1220 775 L 770 845" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="825" y="785" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="995" y="810" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">stdout/file/web result</text>
+  </g>
+</svg>

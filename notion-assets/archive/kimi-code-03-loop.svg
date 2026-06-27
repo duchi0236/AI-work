@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1000" rx="28" fill="#fbfaf8"/>
+  <rect x="34" y="34" width="1532" height="932" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="95" text-anchor="start" font-size="34" font-weight="780" fill="#151515">03 Loop: run-turn 与 turn-step</text>
+  <text x="80" y="133" text-anchor="start" font-size="18" font-weight="520" fill="#667085">一次 turn 内如何反复 step，直到 tool_use 停止出现</text>
+  
+  <g id="input">
+    <rect x="80" y="190" width="380" height="105" rx="12" fill="#eef6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="270" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">runTurn(input)</text>
+<text x="270" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{turnId, signal, llm, tools, hooks}</text>
+  </g>
+
+  <g id="step">
+    <rect x="585" y="190" width="360" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="765" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">executeLoopStep(deps)</text>
+<text x="765" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">+ currentStep + stepUuid</text>
+  </g>
+
+  <g id="messages">
+    <rect x="1070" y="190" width="360" height="105" rx="12" fill="#fff7ed" stroke="#8d949e" stroke-width="2"/>
+    <text x="1250" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">buildMessages()</text>
+<text x="1250" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Context -&gt; Message[]</text>
+  </g>
+
+  <g id="chat">
+    <rect x="585" y="430" width="360" height="105" rx="12" fill="#eef2ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="765" y="467.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">llm.chat(chatParams)</text>
+<text x="765" y="498.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{messages, tools, signal}</text>
+  </g>
+
+  <g id="response">
+    <rect x="1070" y="430" width="360" height="105" rx="12" fill="#f8fafc" stroke="#8d949e" stroke-width="2"/>
+    <text x="1250" y="467.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">LLMChatResponse</text>
+<text x="1250" y="498.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">{toolCalls, usage, finishReason}</text>
+  </g>
+
+  <g id="tools">
+    <rect x="350" y="670" width="360" height="105" rx="12" fill="#fefce8" stroke="#8d949e" stroke-width="2"/>
+    <text x="530" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">runToolCallBatch</text>
+<text x="530" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">if toolCalls.length &gt; 0</text>
+  </g>
+
+  <g id="end">
+    <rect x="860" y="670" width="360" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="1040" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">step.end</text>
+<text x="1040" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">stopReason=end_turn/tool_use</text>
+  </g>
+
+  <g id="loopback">
+    <rect x="585" y="845" width="360" height="95" rx="12" fill="#fff1f2" stroke="#8d949e" stroke-width="2"/>
+    <text x="765" y="877.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Loop decision</text>
+<text x="765" y="908.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">tool_use -&gt; next step</text>
+  </g>
+
+  <g>
+    <path d="M 460 242 L 585 242" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="352.5" y="217" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="522.5" y="242" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">deps</text>
+  </g>
+
+  <g>
+    <path d="M 945 242 L 1070 242" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="837.5" y="217" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1007.5" y="242" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">request messages</text>
+  </g>
+
+  <g>
+    <path d="M 1250 295 L 765 430" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="837.5" y="337.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1007.5" y="362.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">messages</text>
+  </g>
+
+  <g>
+    <path d="M 945 482 L 1070 482" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="837.5" y="457" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1007.5" y="482" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">response</text>
+  </g>
+
+  <g>
+    <path d="M 765 535 L 530 670" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="477.5" y="577.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="647.5" y="602.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">toolCalls[]</text>
+  </g>
+
+  <g>
+    <path d="M 1250 535 L 1040 670" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="975" y="577.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1145" y="602.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">usage + finishReason</text>
+  </g>
+
+  <g>
+    <path d="M 710 775 L 765 845" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="567.5" y="785" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="737.5" y="810" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">tool.result recorded</text>
+  </g>
+
+  <g>
+    <path d="M 1040 775 L 765 845" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="732.5" y="785" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="902.5" y="810" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">derive stopReason</text>
+  </g>
+
+  <g>
+    <path d="M 765 845 L 765 805 L 240 805 L 240 295" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="290" y="780" width="360" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="470" y="805" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">continue if tool_use</text>
+  </g>
+</svg>

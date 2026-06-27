@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 1 1 L 11 6 L 1 11 z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1600" height="1000" rx="28" fill="#fbfaf8"/>
+  <rect x="34" y="34" width="1532" height="932" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="95" text-anchor="start" font-size="34" font-weight="780" fill="#151515">04 ContextMemory + Records + Compaction</text>
+  <text x="80" y="133" text-anchor="start" font-size="18" font-weight="520" fill="#667085">真实历史、模型视图、持久化记录和压缩安全切点</text>
+  
+  <g id="incoming">
+    <rect x="70" y="190" width="370" height="105" rx="12" fill="#eef6ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="255" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">Incoming events</text>
+<text x="255" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">user / assistant / tool.result</text>
+  </g>
+
+  <g id="append">
+    <rect x="520" y="190" width="370" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="705" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">appendMessage(message, origin)</text>
+<text x="705" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">保留 origin / isError</text>
+  </g>
+
+  <g id="history">
+    <rect x="970" y="190" width="380" height="105" rx="12" fill="#fff7ed" stroke="#8d949e" stroke-width="2"/>
+    <text x="1160" y="227.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">_history: ContextMessage[]</text>
+<text x="1160" y="258.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">真实历史</text>
+  </g>
+
+  <g id="records">
+    <rect x="270" y="430" width="380" height="105" rx="12" fill="#f8fafc" stroke="#8d949e" stroke-width="2"/>
+    <text x="460" y="467.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">records.logRecord(record)</text>
+<text x="460" y="498.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">JSONL append + fsync</text>
+  </g>
+
+  <g id="pairing">
+    <rect x="790" y="430" width="430" height="105" rx="12" fill="#fefce8" stroke="#8d949e" stroke-width="2"/>
+    <text x="1005" y="467.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">pendingToolResultIds</text>
+<text x="1005" y="498.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">deferredMessages 保证工具配对</text>
+  </g>
+
+  <g id="build">
+    <rect x="270" y="670" width="380" height="105" rx="12" fill="#eef2ff" stroke="#8d949e" stroke-width="2"/>
+    <text x="460" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">buildMessages()</text>
+<text x="460" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">生成模型视图</text>
+  </g>
+
+  <g id="project">
+    <rect x="790" y="670" width="430" height="105" rx="12" fill="#f0fdf4" stroke="#8d949e" stroke-width="2"/>
+    <text x="1005" y="707.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">project() + compaction</text>
+<text x="1005" y="738.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">strip origin -&gt; Message[]</text>
+  </g>
+
+  <g id="compact">
+    <rect x="540" y="845" width="420" height="95" rx="12" fill="#fff1f2" stroke="#8d949e" stroke-width="2"/>
+    <text x="750" y="877.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">computeCompactCount()</text>
+<text x="750" y="908.5" text-anchor="middle" font-size="24" font-weight="560" fill="#151515">used &gt;= max * 0.85 时找安全切点</text>
+  </g>
+
+  <g>
+    <path d="M 440 242 L 520 242" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="310" y="217" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="480" y="242" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">message + origin</text>
+  </g>
+
+  <g>
+    <path d="M 890 242 L 970 242" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="760" y="217" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="930" y="242" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">append</text>
+  </g>
+
+  <g>
+    <path d="M 710 295 L 460 430" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="415" y="337.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="585" y="362.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">record</text>
+  </g>
+
+  <g>
+    <path d="M 1130 295 L 1005 430" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="897.5" y="337.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="1067.5" y="362.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">tool call invariants</text>
+  </g>
+
+  <g>
+    <path d="M 1160 295 L 460 670" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="640" y="457.5" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="810" y="482.5" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">build from history</text>
+  </g>
+
+  <g>
+    <path d="M 650 722 L 790 722" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="550" y="697" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="720" y="722" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">ContextMessage[]</text>
+  </g>
+
+  <g>
+    <path d="M 1005 775 L 750 845" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="707.5" y="785" width="340" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="877.5" y="810" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">if near limit</text>
+  </g>
+
+  <g>
+    <path d="M 750 845 L 750 810 L 1130 810 L 1130 535" fill="none" stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="780" y="785" width="360" height="38" rx="8" fill="#ffffff" stroke="#d6d9de"/>
+       <text x="960" y="810" text-anchor="middle" font-size="16" font-weight="560" fill="#374151">applyCompaction(summary)</text>
+  </g>
+</svg>
